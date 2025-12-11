@@ -1,0 +1,85 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+namespace p4ela
+{
+    internal class Phone
+    {
+        private int battarery;
+        private string brend;
+        public int BattareryLevel
+        {
+            get { return battarery; }
+            set
+            {
+                if (value <= 0 || value > 100)
+                {
+                    Console.WriteLine("Ошибка ввода: уровень заряда батареи не может быть такой!");
+                    battarery = 0;
+                }
+                else
+                {
+                    battarery = value;
+                }
+            }
+        }
+        public string Brend
+        {
+            get { return brend; }
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                {
+                    Console.WriteLine("Ошибка ввода: строка пустая или null!");
+                    brend = "Неизвестный бренд";
+                }
+                else
+                {
+                    string[] arr_text = value.Split(' ');
+                    for (int i = 0; i < arr_text.Length; i++)
+                    {
+                        if (arr_text[i] == "--")
+                        {
+                            Console.WriteLine("Ошибка ввода: обнаружены запрещенные слова или символы!");
+                            brend = "Неизвестный бренд";
+                        }
+                        if (arr_text[i] == "OR")
+                        {
+                            Console.WriteLine("Ошибка ввода: обнаружены запрещенные слова или символы!");
+                            brend = "Неизвестный бренд";
+                        }
+                        if (arr_text[i] == "union")
+                        {
+                            Console.WriteLine("Ошибка ввода: обнаружены запрещенные слова или символы!");
+                            brend = "Неизвестный бренд";
+                        }
+                    }
+                    if (brend != "Неизвестный бренд")
+                    {
+                        brend = value;
+                    }
+                }
+            }
+        }
+        public Phone(string brend, int battarery)
+        {
+            this.Brend = brend;
+            this.BattareryLevel = battarery;
+        }
+        public void Use()
+        {
+            if (battarery <= 0)
+            {
+                Console.WriteLine($"{Brend} разряжен.");
+            }
+            else
+            {
+                battarery -= 10;
+                Console.WriteLine($"{Brend}: заряд %{BattareryLevel}.");
+            }
+        }
+    }
+}
