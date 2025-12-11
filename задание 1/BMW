@@ -1,0 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace p4ela
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Car car = new Car("vedro", 10);
+            car.Drive();
+            Car car1 = new Car("chertolet", 999);
+            car1.Drive();
+            Car car2 = new Car("Super speed", 400);
+            car2.Drive();
+            Car car3 = new Car("No speed", -40);
+            car3.Drive();
+        }
+    }
+}
