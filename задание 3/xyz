@@ -1,0 +1,73 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace p4ela
+{
+    internal class Book
+    {
+        private int pages;
+        private string title;
+        private bool islong;
+        public string Title
+        {
+            get { return title; }
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                {
+                    Console.WriteLine("Ошибка ввода: строка пустая или null!");
+                    title = "Без названия";
+                }
+                else
+                {
+                    string[] arr_text = value.Split(' ');
+                    for (int i = 0; i < arr_text.Length; i++)
+                    {
+                        if (arr_text[i] == "--")
+                        {
+                            Console.WriteLine("Ошибка ввода: обнаружены запрещенные слова или символы!");
+                            title = "Без названия";
+                        }
+                        if (arr_text[i] == "OR")
+                        {
+                            Console.WriteLine("Ошибка ввода: обнаружены запрещенные слова или символы!");
+                            title = "Без названия";
+                        }
+                        if (arr_text[i] == "union")
+                        {
+                            Console.WriteLine("Ошибка ввода: обнаружены запрещенные слова или символы!");
+                            title = "Без названия";
+                        }
+                    }
+                    if (title != "Без названия")
+                    {
+                        title = value;
+                    }
+                }
+            }
+        }
+        public int Pages
+        { get; set; } = 18;
+
+        public bool Islong => islong;
+
+        public Book(string title,int pages)
+        {
+            this.Title = title;
+            this.Pages = pages;
+        }
+        public void Info()
+        {
+            if (pages < 300)
+            {
+                Console.WriteLine($"Книга: '{Title}', страниц {Pages}, длинный: да.");
+            }
+            else
+            {
+                Console.WriteLine($"Книга: '{Title}', страниц {Pages}, длинный: нет.");
+            }
+        }
+    }
+}
