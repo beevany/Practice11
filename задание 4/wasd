@@ -1,0 +1,73 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Remoting.Activation;
+using System.Text;
+using System.Threading.Tasks;
+namespace p4ela
+{
+    internal class Player
+    {
+        private int level;
+        private int health;
+        private string name;
+        public int Level
+        {
+            get { return level; }
+            set 
+            {
+                if( value < 0 || value > 100 ) 
+                {
+                    level = 0;
+                }
+                else
+                {
+                    level = value;
+                }
+            }
+        }
+        public int Health
+        {
+            get { return health; }
+            set
+            {
+                if (value < 0 || value > 100)
+                {
+                    health = 0;
+                }
+                else
+                {
+                    health = value;
+                }
+            }
+        }
+        public string Name
+        {
+            get { return name; }
+            set { this.name = value; }
+        }
+        public Player(string name, int health, int level)
+        {
+            this.Health = health;
+            this.Level = level;
+            this.Name = name;
+        }
+        public void TakeDamage()
+        {
+            health -= 10;
+            if (health == 0)
+            {
+                Console.WriteLine($"{Name} умер.");
+            }
+            else if (health < 0)
+            {
+                Console.WriteLine($"{Name} давно умер.");
+            }
+            else
+            {
+                Console.WriteLine($"{Name}: здоровье {Health}, уровень {Level}.");
+            }
+        }
+
+    }
+}
